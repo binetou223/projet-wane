@@ -30,3 +30,23 @@ function mettreAjourSolde(array &$wallets, int $index, int $nouveauSolde): void 
     $wallets[$index]['solde'] += $nouveauSolde;
 }
 
+
+function afficherHistorique(array $transactionsFiltrées, string $nomClient): void {
+    
+    if (count($transactionsFiltrées) > 0) {
+        echo "\n=============================================\n";
+        echo "   HISTORIQUE DES TRANSACTIONS : $nomClient \n";
+        echo "=============================================\n";
+        
+        for ($i = 0; $i < count($transactionsFiltrées); $i++) {
+            $t = $transactionsFiltrées[$i];
+            
+            echo "🔹 Type    : " . $t['type'] . "\n";
+            echo "   Montant : " . $t['montant'] . " CFA\n";
+            echo "---------------------------------------------\n";
+        }
+    } 
+    else {
+        echo "\nℹ️ Info : Aucune transaction enregistrée pour $nomClient.\n";
+    }
+}

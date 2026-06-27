@@ -95,3 +95,15 @@ if ($montant <= 100000) {
 function verifierSoldeDisponible(int $soldeActuel, int $montantLeRetrait, int $frais): bool {
     return $soldeActuel >= ($montantLeRetrait + $frais);
 }
+
+function filtrerTransactions(int $indexRecherche, array $transactions): array {
+    $historiqueClient = [];
+
+    foreach ($transactions as $transaction) {
+        if ($transaction['indexClient'] === $indexRecherche) {
+            $historiqueClient[] = $transaction; 
+        }
+    }
+
+    return $historiqueClient;
+}
