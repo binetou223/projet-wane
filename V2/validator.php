@@ -75,3 +75,23 @@ function validerMontant(int $montant, int $minimum = 0): bool {
     return $montant > $minimum;
 }
 
+function calculFrais(int $montant):int{
+if ($montant <= 10000) {
+        return 200;
+    }
+
+if ($montant <= 100000) {
+        return 500;
+    }
+ $fraisCalculés = (int)($montant * 0.01);
+
+ if ($fraisCalculés > 5000) {
+        return 5000;
+    }
+    
+    return $fraisCalculés;
+}
+
+function verifierSoldeDisponible(int $soldeActuel, int $montantLeRetrait, int $frais): bool {
+    return $soldeActuel >= ($montantLeRetrait + $frais);
+}
