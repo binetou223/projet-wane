@@ -1,11 +1,23 @@
 <?php
 require_once 'services.php';
+require_once 'repository.php';
+function saisirWallet():array{
+    $wallet=['client'=>'','telephone'=>'','code'=>0,'solde'=>0];
+    $wallet['client'] =readline("Veuillez saisir un client :");
+    $wallet['telephone'] =readline("Veuillez saisir un telephone :");
+    $wallet['code'] = (int)readline("Veuillez saisir un code :");
+    $wallet['solde']= (int)readline("veuillez saisir un solde");
+    return $wallet ;
+}
 
 function switchCase(string $choix):void{
+    global $wallets;
     switch ($choix) {
         case '1':
             echo "\ Créer Wallet...\n";
-            
+             $newWallet=saisirWallet();
+            creerWallet($newWallet);
+            afficherWallet($wallets);
             break;
         case '2':
             echo " Faire Dépôt...\n";
