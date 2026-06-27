@@ -20,6 +20,7 @@ do {
     if (!validerChoixMenu($choix)) {
         echo "Choix invalide, veuillez réessayer\n";    
     }else{ 
+        switchCase( $choix);
     }
     
 } while ($choix!=='0');
