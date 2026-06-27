@@ -31,9 +31,6 @@ function switchCase(string $choix):void{
 
          case '3':
             echo "\n--- OPÉRATION DE RETRAIT ---\n";
-            $telephoneSaisi = readline("Veuillez saisir un telephone : ");
-            $montantSaisi = (int)readline("Veuillez saisir un montant : ");
-             faireRetrait($telephoneSaisi, $montantSaisi);
             
             break;
 
