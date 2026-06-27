@@ -1,4 +1,7 @@
 <?php
+require_once 'validator.php';
+require_once 'controller.php';
+
 function afficherMenu()
 {
     echo "1. Créer Wallet\n";
@@ -15,27 +18,10 @@ do {
     affichermenu();
 
     $choix = readline("Votre choix : ");
-    
-    switch ($choix) {
-        case '1':
-            echo "\ Créer Wallet...\n";
-            break;
-        case '2':
-            echo " Faire Dépôt...\n";
-            break;
-        case '3':
-            echo " Faire Retrait...\n";
-            break;
-        case '4':
-            echo "Lister les Transactions...\n";
-            break;
-        case '0':
-            echo "\nAu revoir !\n";
-            break;
-        default:
-            echo "\nChoix invalide\n";
-            break;
+    if (!validerChoixMenu($choix)) {
+        echo "Choix invalide, veuillez réessayer\n";    
     }
+    
+} while ($choix!=='0');
 
-} while ($choix !== '0');
 

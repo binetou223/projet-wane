@@ -1,5 +1,16 @@
 <?php
-function validerNombre($taille , $valeur): bool {
+function validerChoixMenu(string $choix): bool {
+    $choixAutorises = ['0', '1', '2', '3', '4'];
+
+    foreach ($choixAutorises as $option) {
+        if ($choix === $option) {
+            return true; 
+        }
+    }
+    return false; 
+}
+
+function validerNombre(string $taille , int $valeur): bool {
     return strlen($valeur) === $taille;
 }
 
@@ -38,8 +49,4 @@ function uniciteCode(array $wallet, array $wallets): int {
     }
 
     return $compteurDoublons; 
-}
-
-function validationMontant(){
-
 }
