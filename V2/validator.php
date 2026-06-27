@@ -41,3 +41,14 @@ function uniciteCode(array $wallet, array $wallets): int {
     return $occurence[$wallet['code']] ?? 0;
 }
 
+function verifierExistenceTelephone(string $telephoneLeNumero, array $wallets) {
+    $telephones = array_column($wallets, 'telephone');
+    return array_search($telephoneLeNumero, $telephones, true);
+}
+
+function validerMontant(int $montant, int $minimum = 0): bool {
+    return $montant > $minimum;
+}
+
+
+
