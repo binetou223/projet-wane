@@ -17,3 +17,54 @@ function creerWallet(array $newWallet):string{
     }
     return "Erreur : Impossible de créer.";
 }
+
+function faireDepot(string $telephone, int $montant): int
+{
+    global $wallets, $transactions;
+
+    $index = verifierExistenceTelephone($telephone, $wallets);
+
+    if ($index !== false && validerMontant($montant) === true) 
+    {
+        $nouveauSolde = $wallets[$index]['solde'] + $montant;
+        mettreAjourSolde($wallets, $index, $nouveauSolde);
+
+        enregistrerDansTableau(
+            ['montant' => $montant, 'indexClient' => $index, 'type' => 'Depot'], 
+            $transactions
+        );
+
+        return 0;
+    }
+
+    return ($index === false) ? 1 : 2; 
+}
+
+
+function faireRetrait(string $telephone, int $montant): int
+{
+    global $wallets, $transactions;
+
+    $index = verifierExistenceTelephone($telephone, $wallets);
+
+    $frais = calculFrais($montant);
+
+    if ($index !== false && validerMontant($montant) === true && verifierSoldeDisponible($wallets[$index]['solde'], $montant, $frais) === true) 
+    {
+        $nouveauSolde = $wallets[$index]['solde'] - $montant - $frais;
+        mettreAjourSolde($wallets, $index, $nouveauSolde);
+
+        enregistrerDansTableau(
+            ['montant' => $montant, 'frais' => $frais, 'indexClient' => $index, 'type' => 'Retrait'], 
+            $transactions
+        );
+
+        return 0; 
+    }
+
+    if ($index === false) {
+        return 1; 
+    }
+    
+    return (!validerMontant($montant)) ? 2 : 3; 
+}

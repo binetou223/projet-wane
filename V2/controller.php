@@ -20,11 +20,23 @@ function switchCase(string $choix):void{
             afficherWallet($wallets);
             break;
         case '2':
-            echo " Faire Dépôt...\n";
+            echo "\n--- OPÉRATION DE DÉPÔT ---\n";
+            $telephone = readline("Veuillez saisir un telephone : ");
+            
+            $montant = (int)readline("Veuillez saisir un montant : ");
+            
+            faireDepot($telephone, $montant);
+            
             break;
-        case '3':
-            echo " Faire Retrait...\n";
+
+         case '3':
+            echo "\n--- OPÉRATION DE RETRAIT ---\n";
+            $telephoneSaisi = readline("Veuillez saisir un telephone : ");
+            $montantSaisi = (int)readline("Veuillez saisir un montant : ");
+             faireRetrait($telephoneSaisi, $montantSaisi);
+            
             break;
+
         case '4':
             echo "Lister les Transactions...\n";
             break;
