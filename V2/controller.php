@@ -14,20 +14,22 @@ function saisirWallet(): array
 function switchCase(string $choix): void
 {
     global $wallets;
+    global $transactions;
     switch ($choix) {
         case '1':
             echo "\ Créer Wallet...\n";
-           $newWallet = saisirWallet();
+            $newWallet = saisirWallet();
             creerWallet($newWallet);
             afficherWallet($wallets);
-
+            break;
         case '2':
             echo "\n--- OPÉRATION DE DÉPÔT ---\n";
-
+            $telephone = readline("Veuillez saisir un telephone : ");
+            $montant = (int)readline("Veuillez saisir un montant : ");
+            faireDepot($telephone, $montant);
             break;
-
         case '3':
-           echo "\n--- OPÉRATION DE RETRAIT---\n";
+            echo "\n--- OPÉRATION DE RETRAIT---\n";
 
             break;
 
