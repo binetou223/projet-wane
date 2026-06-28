@@ -1,6 +1,10 @@
 <?php
+namespace  Controller;
 require_once 'repository.php';
 require_once 'services.php';
+use Repository as res;
+use Validator as vali;
+
 function saisirWallet(): array
 {
     $wallet = ['client' => '', 'telephone' => '', 'code' => 0, 'solde' => 0];
@@ -20,7 +24,7 @@ function switchCase(string $choix): void
             echo "\ Créer Wallet...\n";
             $newWallet = saisirWallet();
             creerWallet($newWallet);
-            afficherWallet($wallets);
+            res\afficherWallet($wallets);
             break;
         case '2':
             echo "\n--- OPÉRATION DE DÉPÔT ---\n";
@@ -39,15 +43,15 @@ function switchCase(string $choix): void
             echo "\n--- CONSULTATION DE L'HISTORIQUE ---\n";
             $telephoneSaisi = readline("Veuillez saisir votre numéro de téléphone : ");
             
-            $index = verifierExistenceTelephone($telephoneSaisi, $wallets);
+            $index = vali\verifierExistenceTelephone($telephoneSaisi, $wallets);
             
             if ($index === false) {
                 echo "Erreur : Aucun wallet trouvé pour ce numéro de téléphone.\n";
             } else {
-                $mesTransactions = filtrerTransactions($index, $transactions);
+                $mesTransactions = vali\filtrerTransactions($index, $transactions);
                 $nomDuTitulaire = $wallets[$index]['client'];
                 
-                afficherHistorique($mesTransactions, $nomDuTitulaire);
+                res\afficherHistorique($mesTransactions, $nomDuTitulaire);
             }
             break;
 
