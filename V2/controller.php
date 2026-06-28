@@ -37,7 +37,18 @@ function switchCase(string $choix): void
 
         case '4':
             echo "\n--- CONSULTATION DE L'HISTORIQUE ---\n";
-
+            $telephoneSaisi = readline("Veuillez saisir votre numéro de téléphone : ");
+            
+            $index = verifierExistenceTelephone($telephoneSaisi, $wallets);
+            
+            if ($index === false) {
+                echo "Erreur : Aucun wallet trouvé pour ce numéro de téléphone.\n";
+            } else {
+                $mesTransactions = filtrerTransactions($index, $transactions);
+                $nomDuTitulaire = $wallets[$index]['client'];
+                
+                afficherHistorique($mesTransactions, $nomDuTitulaire);
+            }
             break;
 
         case '0':
