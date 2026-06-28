@@ -1,6 +1,8 @@
 <?php
 require_once 'validator.php';
 require_once 'controller.php';
+use Validator as vali;
+use  Controller as control;
 function afficherMenu()
 {
     echo "1. Créer Wallet\n";
@@ -17,12 +19,10 @@ do {
     affichermenu();
 
     $choix = readline("Votre choix : ");
-    if (!validerChoixMenu($choix)) {
+    if (!vali\validerChoixMenu($choix)) {
         echo "Choix invalide, veuillez réessayer\n";    
     }else{ 
-    switchCase($choix);
+    control\switchCase($choix);
     }
     
 } while ($choix!=='0');
-
-
