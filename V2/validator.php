@@ -71,3 +71,9 @@ function verifierSoldeDisponible(int $soldeActuel, int $montantLeRetrait, int $f
     return $soldeActuel >= ($montantLeRetrait + $frais);
 }
 
+function filtrerTransactions(int $indexRecherche, array $transactions): array {
+    $filtre = array_filter($transactions, fn($tx) => $tx['indexClient'] === $indexRecherche);
+    return array_values($filtre); 
+}
+
+

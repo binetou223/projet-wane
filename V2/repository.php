@@ -30,3 +30,21 @@ function afficherWallet(array $wallets): void
 function mettreAjourSolde(array &$wallets, int $index, int $montant): void {
     $wallets[$index]['solde'] += $montant;
 }
+
+function afficherHistorique(array $transactionsFiltrées, string $nomClient): void {
+    if (empty($transactionsFiltrées)) {
+        echo " Info : Aucune transaction enregistrée pour $nomClient.\n";
+        return;
+    }
+
+    echo "\n=============================================\n";
+    echo "   HISTORIQUE DES TRANSACTIONS : $nomClient \n";
+    echo "=============================================\n";
+    
+    // array_map applique l'affichage proprement sur chaque transaction
+    array_map(function(array $t) {
+        echo "🔹 Type    : " . $t['type'] . "\n";
+        echo "   Montant : " . $t['montant'] . " CFA\n";
+        echo "---------------------------------------------\n";
+    }, $transactionsFiltrées);
+}

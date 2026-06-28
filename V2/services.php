@@ -68,3 +68,5 @@ function faireRetrait(string $telephone, int $montant): int
     
     return (!validerMontant($montant)) ? 2 : 3; 
 }
+
+
